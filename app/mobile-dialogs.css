@@ -1,0 +1,56 @@
+@media (max-width:600px) {
+  html:has(dialog:is(.zone-details-dialog,.rental-dialog,.booking-picker,.interactive-map-dialog)[open]) { overflow:hidden; }
+
+  dialog.dialog:is(.zone-details-dialog,.rental-dialog,.booking-picker,.interactive-map-dialog) {
+    --dialog-block-gap:max(12px,env(safe-area-inset-top, 0px),env(safe-area-inset-bottom, 0px));
+    --dialog-inline-gap:max(12px,env(safe-area-inset-left, 0px),env(safe-area-inset-right, 0px));
+    inset:0;
+    width:calc(100% - 2 * var(--dialog-inline-gap));
+    height:fit-content;
+    max-width:none;
+    max-height:calc(100dvh - 2 * var(--dialog-block-gap));
+    margin:auto;
+    padding:16px 16px 20px;
+    border:0;
+    border-radius:20px;
+    overflow:auto;
+    overscroll-behavior:contain;
+  }
+
+  dialog.dialog:is(.zone-details-dialog,.rental-dialog,.booking-picker,.interactive-map-dialog) > .dialog-close {
+    position:sticky;
+    inset:0 auto auto;
+    z-index:5;
+    height:0;
+    margin:0;
+    pointer-events:none;
+  }
+
+  dialog.dialog:is(.zone-details-dialog,.rental-dialog,.booking-picker,.interactive-map-dialog) > .dialog-close button {
+    align-self:start;
+    min-width:44px;
+    min-height:44px;
+    padding:0;
+    pointer-events:auto;
+  }
+
+  .dialog.zone-details-dialog .zone-dialog-heading { display:grid; align-content:center; min-height:44px; }
+  .dialog.zone-details-dialog .zone-dialog-heading h2,
+  .dialog.booking-picker .picker-content h2 { padding-inline:50px; }
+  .dialog.booking-picker .picker-content h2 { display:grid; place-items:center; min-height:34px; }
+  .dialog:is(.rental-dialog,.interactive-map-dialog) > h2 { min-height:44px; padding-inline-end:50px; }
+  .dialog.zone-details-dialog .zone-detail-tabs {
+    width:min(100%,420px); margin:8px auto 12px; padding:4px; gap:4px;
+    grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:minmax(60px,1fr);
+    overflow-x:auto; scrollbar-width:thin;
+  }
+  .dialog.zone-details-dialog .zone-detail-tabs button {
+    display:grid; grid-template-rows:18px minmax(2.3em,auto); place-content:center; place-items:center;
+    min-width:0; min-height:52px; padding:3px 2px; gap:3px;
+    border-radius:7px; font-size:.72rem; line-height:1.15; text-align:center;
+  }
+  .dialog.zone-details-dialog .zone-detail-icon { display:block; width:18px; height:18px; }
+  .zone-detail-label > span { display:inline-block; white-space:nowrap; }
+  .dialog.zone-details-dialog .zone-photos figure img,
+  .dialog.zone-details-dialog .zone-video video { max-height:none; }
+}

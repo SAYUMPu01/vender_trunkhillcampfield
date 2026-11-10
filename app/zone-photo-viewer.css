@@ -1,0 +1,32 @@
+.zone-photo-viewer {
+  --zone-photo-stage-height:min(700px,max(32px,calc(100dvh - 144px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px))));
+  position:fixed;
+  inset:env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+  width:min(980px,calc(100vw - 24px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)));
+  height:fit-content;
+  max-height:min(820px,calc(100dvh - 24px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)));
+  max-width:none; margin:auto; padding:0;
+  overflow:hidden; border:0; border-radius:16px; background:#17251e; color:white;
+}
+.zone-photo-viewer::backdrop { background:#101c17c9; }
+.zone-photo-viewer-layout { max-height:inherit; display:grid; grid-template-rows:auto minmax(0,1fr) auto; }
+.zone-photo-viewer-header,.zone-photo-viewer-controls {
+  display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px 12px;
+}
+.zone-photo-viewer-header p { min-width:0; margin:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.zone-photo-viewer-stage { overflow:auto; overscroll-behavior:contain; background:#101a15; }
+.zone-photo-viewer-stage img {
+  display:block; width:auto; height:auto; max-width:100%; max-height:var(--zone-photo-stage-height);
+  margin-inline:auto; object-fit:contain;
+}
+.zone-photo-viewer-stage[data-zoomed=true] { height:var(--zone-photo-stage-height); max-height:100%; }
+.zone-photo-viewer-stage[data-zoomed=true] img { width:200%; height:200%; max-width:none; max-height:none; }
+.zone-photo-viewer-controls { justify-content:center; flex-wrap:wrap; }
+.zone-photo-viewer-navigation { display:flex; align-items:center; gap:8px; white-space:nowrap; }
+.zone-photo-viewer-button {
+  min-width:44px; min-height:44px; padding:4px 12px;
+  border:1px solid var(--border); border-radius:9px; background:var(--white); color:var(--ink);
+}
+.zone-photo-viewer-header .zone-photo-viewer-button,.zone-photo-viewer-navigation .zone-photo-viewer-button {
+  font-size:1.35rem; line-height:1;
+}
